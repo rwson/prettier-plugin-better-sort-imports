@@ -225,21 +225,6 @@ with options as a JSON string of the plugin array:
 importOrderParserPlugins: []
 ```
 
-### How does import sort work ?
-
-The plugin extracts the imports which are defined in `importOrder`. These imports are considered as _local imports_.
-The imports which are not part of the `importOrder` is considered as _third party imports_.
-
-After, the plugin sorts the _local imports_ and _third party imports_ using [natural sort algorithm](https://en.wikipedia.org/wiki/Natural_sort_order).
-
-In the end, the plugin returns final imports with _third party imports_ on top and _local imports_ at the end.
-
-The _third party imports_ position (it's top by default) can be overridden using the `<THIRD_PARTY_MODULES>` special word in the `importOrder`.
-
-### FAQ / Troubleshooting
-
-Having some trouble or an issue ? You can check [FAQ / Troubleshooting section](./docs/TROUBLESHOOTING.md).
-
 ### Compatibility
 
 | Framework              | Supported                | Note                                             |
@@ -248,28 +233,8 @@ Having some trouble or an issue ? You can check [FAQ / Troubleshooting section](
 | NodeJS with ES Modules | ✅ Everything            | -                                                |
 | React                  | ✅ Everything            | -                                                |
 | Angular                | ✅ Everything            | Supported through `importOrderParserPlugins` API |
-| Vue                    | ⚠️ Soon to be supported. | Any contribution is welcome.                     |
-| Svelte                 | ⚠️ Soon to be supported. | Any contribution is welcome.                     |
-
-### Used by
-
-Want to highlight your project or company ? Adding your project / company name will help plugin to gain attraction and contribution.
-Feel free to make a Pull Request to add your project / company name.
-
--   [trivago](https://company.trivago.com)
--   ADD YOUR PROJECT / COMPANY NAME
-
-### Contribution
-
-For more information regarding contribution, please check the [Contributing Guidelines](./CONTRIBUTING.md). If you are trying to
-debug some code in the plugin, check [Debugging Guidelines](./docs/DEBUG.md)
-
-### Maintainers
-
-| [Ayush Sharma](https://github.com/ayusharma)                             | [Behrang Yarahmadi](https://github.com/byara)                         |
-| ------------------------------------------------------------------------ | --------------------------------------------------------------------- |
-| ![ayusharma](https://avatars2.githubusercontent.com/u/6918450?s=120&v=4) | ![@byara](https://avatars2.githubusercontent.com/u/6979966?s=120&v=4) |
-| [@ayusharma\_](https://twitter.com/ayusharma_)                           | [@behrang_y](https://twitter.com/behrang_y)                           |
+| Vue                    | Coming soon | Any contribution is welcome.                     |
+| Svelte                 | Coming soon | Any contribution is welcome.                     |
 
 ### Disclaimer
 
