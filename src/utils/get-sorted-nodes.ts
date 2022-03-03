@@ -8,6 +8,8 @@ import { getImportNodesMatchedGroup } from './get-import-nodes-matched-group';
 import { getSortedImportSpecifiers } from './get-sorted-import-specifiers';
 import { getSortedNodesGroup } from './get-sorted-nodes-group';
 
+import { getPkgInfo } from './get-pkg-info';
+
 /**
  * This function returns all the nodes which are in the importOrder array.
  * The plugin considered these import nodes as local import declarations.
@@ -18,6 +20,13 @@ export const getSortedNodes: GetSortedNodes = (nodes, options) => {
     naturalSort.insensitive = options.importOrderCaseInsensitive;
 
     let { importOrder } = options;
+
+    const originOrders = clone(importOrder);
+
+    const pkgInfo = getPkgInfo();
+    const dependencies = Object.keys(pkgInfo.dependencies)
+    const specifiedThirdPartyDeps = dependencies.some((d: string) => originOrders.includes(d))
+
     const {
         importOrderSeparation,
         importOrderSortSpecifiers,
@@ -28,7 +37,26 @@ export const getSortedNodes: GetSortedNodes = (nodes, options) => {
     const finalNodes: ImportOrLine[] = [];
 
     if (!importOrder.includes(THIRD_PARTY_MODULES_SPECIAL_WORD)) {
-        importOrder = [THIRD_PARTY_MODULES_SPECIAL_WORD, ...importOrder];
+        if (specifiedThirdPartyDeps) {
+            importOrder = []
+
+            originOrders.forEach((order) => {
+                if (order === THIRD_PARTY_MODULES_SPECIAL_WORD) {
+                    importOrder.push(THIRD_PARTY_MODULES_SPECIAL_WORD)
+                }
+
+                if (dependencies.includes(order)) {
+                    importOrder.push(order)
+                } else {
+                    if (!importOrder.includes(THIRD_PARTY_MODULES_SPECIAL_WORD)) {
+                        importOrder.push(THIRD_PARTY_MODULES_SPECIAL_WORD)
+                    }
+                    importOrder.push(order)
+                }
+            })
+        } else {
+            importOrder = [THIRD_PARTY_MODULES_SPECIAL_WORD, ...importOrder];
+        }
     }
 
     const importOrderGroups = importOrder.reduce<ImportGroups>(
@@ -47,6 +75,7 @@ export const getSortedNodes: GetSortedNodes = (nodes, options) => {
         const matchedGroup = getImportNodesMatchedGroup(
             node,
             importOrderWithOutThirdPartyPlaceholder,
+            originOrders
         );
         importOrderGroups[matchedGroup].push(node);
     }

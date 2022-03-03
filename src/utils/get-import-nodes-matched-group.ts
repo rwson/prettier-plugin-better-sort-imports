@@ -10,6 +10,7 @@ import { THIRD_PARTY_MODULES_SPECIAL_WORD } from '../constants';
 export const getImportNodesMatchedGroup = (
     node: ImportDeclaration,
     importOrder: string[],
+    originOrders: string[]
 ) => {
     const groupWithRegExp = importOrder.map((group) => ({
         group,

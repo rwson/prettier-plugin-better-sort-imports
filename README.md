@@ -1,8 +1,6 @@
-# Prettier plugin sort imports
+# Prettier plugin better sort imports
 
-A prettier plugin to sort import declarations by provided Regular Expression order.
-
-**Note: If you are migrating from v2.x.x to v3.x.x, [Please Read Migration Guidelines](./docs/MIGRATION.md)**
+A prettier plugin to sort import declarations by provided Regular Expression order.Inspired by [@trivago/prettier-plugin-sort-imports](https://github.com/trivago/prettier-plugin-sort-imports)
 
 ### Input
 
@@ -56,22 +54,20 @@ import { add, filter, repeat } from '../utils';
 npm
 
 ```shell script
-npm install --save-dev @trivago/prettier-plugin-sort-imports
+npm install --save-dev prettier-plugin-better-sort-imports
 ```
 
 or, using yarn
 
 ```shell script
-yarn add --dev @trivago/prettier-plugin-sort-imports
+yarn add --dev prettier-plugin-better-sort-imports
 ```
-
-**Note: If you are migrating from v2.x.x to v3.x.x, [Please Read Migration Guidelines](./docs/MIGRATION.md)**
 
 ### Usage
 
 Add an order in prettier config file.
 
-```ecmascript 6
+```javascript
 module.exports = {
   "printWidth": 80,
   "tabWidth": 4,
@@ -92,15 +88,57 @@ module.exports = {
 
 A collection of Regular expressions in string format.
 
-```
+```javascript
 "importOrder": ["^@core/(.*)$", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
 ```
 
 _Default behavior:_ The plugin moves the third party imports to the top which are not part of the `importOrder` list.
 To move the third party imports at desired place, you can use `<THIRD_PARTY_MODULES>` to assign third party imports to the appropriate position:
 
-```
+```javascript
 "importOrder": ["^@core/(.*)$", "<THIRD_PARTY_MODULES>", "^@server/(.*)$", "^@ui/(.*)$", "^[./]"],
+```
+
+## Notice
+
+`<THIRD_PARTY_MODULES>` in `@trivago/prettier-plugin-sort-imports` are all third-party modules. When sorting, the dependencies will be sorted in alphabetical order, users can't specific sort orders for third packages, just like below:
+
+```javascript
+//	before sort
+import React from 'react'
+import { render } from 'react-dom'
+import { v4 } from 'uuid'
+import { message } from 'antd'
+import { CoolModule } from 'coll-package'
+
+//	sorted
+import { message } from 'antd'
+import { CoolModule } from 'coll-package'
+import React from 'react'
+import { render } from 'react-dom'
+import { v4 } from 'uuid'
+```
+
+In `prettier-plugin-better-sort-imports`, users can specify the order of specific third-party packages, and `<THIRD_PARTY_MODULES>` will be sorted after the specified third-party packages, just like below:
+
+```javascript
+"importOrder": ["react", "react-dom", "<THIRD_PARTY_MODULES>", "eth."],
+```
+
+```javascript
+//	before sort
+import React from 'react'
+import { render } from 'react-dom'
+import { v4 } from 'uuid'
+import { CoolModule } from 'coll-package'
+import { message } from 'antd'
+
+//	sorted
+import React from 'react'
+import { render } from 'react-dom'
+import { message } from 'antd'
+import { CoolModule } from 'coll-package'
+import { v4 } from 'uuid'
 ```
 
 #### `importOrderSeparation`

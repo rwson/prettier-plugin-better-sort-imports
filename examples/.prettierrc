@@ -5,7 +5,7 @@
     "singleQuote": true,
     "jsxBracketSameLine": true,
     "semi": true,
-    "importOrder": ["^@server/(.*)$", "^@core/(.*)$", "^@ui/(.*)$", "^[./]"],
+    "importOrder": ["react", "react-router-dom", "^@server/(.*)$", "^@core/(.*)$", "^@ui/(.*)$", "^[./]"],
     "importOrderSeparation": true,
     "importOrderSortSpecifiers": true
 }

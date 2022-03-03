@@ -1,16 +1,21 @@
+import { debounce, reduce } from 'lodash';
+
 import React, {
+    ChangeEvent,
     FC,
+    KeyboardEvent,
     useEffect,
     useRef,
-    ChangeEvent,
-    KeyboardEvent,
 } from 'react';
-import { logger } from '@core/logger';
-import { reduce, debounce } from 'lodash';
-import { Message } from '../Message';
-import { createServer } from '@server/node';
-import { Alert } from '@ui/Alert';
-import { repeat, filter, add } from './utils';
-import { initializeApp } from '@core/app';
-import { Popup } from '@ui/Popup';
+
 import { createConnection } from '@server/database';
+import { createServer } from '@server/node';
+
+import { initializeApp } from '@core/app';
+import { logger } from '@core/logger';
+
+import { Alert } from '@ui/Alert';
+import { Popup } from '@ui/Popup';
+
+import { Message } from '../Message';
+import { add, filter, repeat } from './utils';
