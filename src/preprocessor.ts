@@ -15,6 +15,7 @@ export function preprocessor(code: string, options: PrettierOptions) {
         importOrderSeparation,
         importOrderGroupNamespaceSpecifiers,
         importOrderSortSpecifiers,
+        base
     } = options;
 
     const importNodes: ImportDeclaration[] = [];
@@ -46,6 +47,7 @@ export function preprocessor(code: string, options: PrettierOptions) {
         importOrderSeparation,
         importOrderGroupNamespaceSpecifiers,
         importOrderSortSpecifiers,
+        base
     });
 
     return getCodeFromAst(allImports, code, interpreter);

@@ -5,10 +5,9 @@ import { THIRD_PARTY_MODULES_SPECIAL_WORD, newLineNode } from '../constants';
 import { naturalSort } from '../natural-sort';
 import { GetSortedNodes, ImportGroups, ImportOrLine } from '../types';
 import { getImportNodesMatchedGroup } from './get-import-nodes-matched-group';
+import { getPkgInfo } from './get-pkg-info';
 import { getSortedImportSpecifiers } from './get-sorted-import-specifiers';
 import { getSortedNodesGroup } from './get-sorted-nodes-group';
-
-import { getPkgInfo } from './get-pkg-info';
 
 /**
  * This function returns all the nodes which are in the importOrder array.
@@ -23,9 +22,11 @@ export const getSortedNodes: GetSortedNodes = (nodes, options) => {
 
     const originOrders = clone(importOrder);
 
-    const pkgInfo = getPkgInfo();
-    const dependencies = Object.keys(pkgInfo.dependencies)
-    const specifiedThirdPartyDeps = dependencies.some((d: string) => originOrders.includes(d))
+    const pkgInfo = getPkgInfo(options.base);
+    const dependencies = Object.keys(pkgInfo.dependencies ?? {});
+    const specifiedThirdPartyDeps = dependencies.some((d: string) =>
+        originOrders.includes(d),
+    );
 
     const {
         importOrderSeparation,
@@ -38,22 +39,24 @@ export const getSortedNodes: GetSortedNodes = (nodes, options) => {
 
     if (!importOrder.includes(THIRD_PARTY_MODULES_SPECIAL_WORD)) {
         if (specifiedThirdPartyDeps) {
-            importOrder = []
+            importOrder = [];
 
             originOrders.forEach((order) => {
                 if (order === THIRD_PARTY_MODULES_SPECIAL_WORD) {
-                    importOrder.push(THIRD_PARTY_MODULES_SPECIAL_WORD)
+                    importOrder.push(THIRD_PARTY_MODULES_SPECIAL_WORD);
                 }
 
                 if (dependencies.includes(order)) {
-                    importOrder.push(order)
+                    importOrder.push(order);
                 } else {
-                    if (!importOrder.includes(THIRD_PARTY_MODULES_SPECIAL_WORD)) {
-                        importOrder.push(THIRD_PARTY_MODULES_SPECIAL_WORD)
+                    if (
+                        !importOrder.includes(THIRD_PARTY_MODULES_SPECIAL_WORD)
+                    ) {
+                        importOrder.push(THIRD_PARTY_MODULES_SPECIAL_WORD);
                     }
-                    importOrder.push(order)
+                    importOrder.push(order);
                 }
-            })
+            });
         } else {
             importOrder = [THIRD_PARTY_MODULES_SPECIAL_WORD, ...importOrder];
         }
@@ -75,7 +78,7 @@ export const getSortedNodes: GetSortedNodes = (nodes, options) => {
         const matchedGroup = getImportNodesMatchedGroup(
             node,
             importOrderWithOutThirdPartyPlaceholder,
-            originOrders
+            originOrders,
         );
         importOrderGroups[matchedGroup].push(node);
     }

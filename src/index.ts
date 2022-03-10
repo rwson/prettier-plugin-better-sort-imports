@@ -46,6 +46,12 @@ const options = {
         default: false,
         description: 'Should specifiers be sorted?',
     },
+    base: {
+        type: 'string',
+        category: 'Global',
+        default: '',
+        description: 'Your Project Base',
+    },
 };
 
 module.exports = {

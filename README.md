@@ -70,6 +70,7 @@ Add an order in prettier config file.
 ```javascript
 module.exports = {
   "printWidth": 80,
+  "base": __dirname,
   "tabWidth": 4,
   "trailingComma": "all",
   "singleQuote": true,
@@ -141,6 +142,23 @@ import { CoolModule } from 'coll-package'
 import { v4 } from 'uuid'
 ```
 
+##### If you enable `formatOnSave` in your `Code Editor` and use `prettier-plugin-better-sort-imports` to sort module imports, then your `prettier` configuration file should contain `base` pointing to your project root directory，just like below
+
+```javascript
+//	.prettierrc
+{
+  //	SOME OPTIONS
+  "base": "path/to/your-project-root-directory"
+}
+
+//	prettier.config.js
+module.exports = {
+  //	SOME OPTIONS
+  base: __dirname
+};
+
+```
+
 #### `importOrderSeparation`
 
 **type**: `boolean`
@@ -181,14 +199,14 @@ used to order imports within each match group.
 
 For example, when false (or not specified):
 
-```ecmascript 6
+```javascript
 import ExampleView from './ExampleView';
 import ExamplesList from './ExamplesList';
 ```
 
 compared with `"importOrderCaseInsensitive": true`:
 
-```ecmascript 6
+```javascript
 import ExamplesList from './ExamplesList';
 import ExampleView from './ExampleView';
 ```
@@ -207,7 +225,7 @@ you can use this field to enforce the usage of the plugins' babel parser needs.
 
 **To pass the plugins to babel parser**:
 
-```
+```javascript
   "importOrderParserPlugins" : ["classProperties", "decorators-legacy"]
 ```
 
@@ -215,13 +233,13 @@ you can use this field to enforce the usage of the plugins' babel parser needs.
 with options as a JSON string of the plugin array:
 `"[\"plugin-name\", { \"pluginOption\": true }]"`.
 
-```
-  "importOrderParserPlugins" : ["classProperties", "[\"decorators\", { \"decoratorsBeforeExport\": true }]"]
+```javascript
+  "importOrderParserPlugins" : ["classProperties", "["decorators", { "decoratorsBeforeExport": true }]"]
 ```
 
 **To disable default plugins for babel parser, pass an empty array**:
 
-```
+```javascript
 importOrderParserPlugins: []
 ```
 
