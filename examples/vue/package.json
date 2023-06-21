@@ -1,0 +1,36 @@
+{
+  "name": "vue-example",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
+    "@unocss/reset": "^0.51.8",
+    "@usemodals/vue3": "^1.1.0",
+    "@vueuse/core": "^10.1.2",
+    "axios": "^1.4.0",
+    "element-plus": "^2.3.4",
+    "element-pro-components": "^1.2.10",
+    "lodash-es": "^4.17.21",
+    "noop-ts": "^1.0.6",
+    "nprogress": "^0.2.0",
+    "query-string": "^8.1.0",
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6",
+    "vuedraggable": "^4.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-legacy": "^4.0.4",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "cross-env": "^7.0.3",
+    "husky": "^8.0.0",
+    "patch-package": "^7.0.0",
+    "prettier": "^2.8.8",
+    "sass": "^1.62.1",
+    "speed-measure-vite-plugin": "^1.0.1",
+    "terser": "^5.17.4",
+    "unocss": "^0.51.8",
+    "vite": "^4.3.2",
+    "vite-svg-loader": "^4.0.0"
+  }
+}

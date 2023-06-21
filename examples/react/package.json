@@ -1,14 +1,7 @@
 {
-  "name": "museum",
+  "name": "react-example",
   "version": "1.0.0",
-  "license": "MIT",
-  "scripts": {
-    "start": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "debug": "node --inspect ./node_modules/vite/bin/vite.js",
-    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,scss}'"
-  },
+  "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "@reduxjs/toolkit": "^1.7.1",

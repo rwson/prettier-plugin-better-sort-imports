@@ -1,16 +1,14 @@
-// I am top level comment in this file.
-// I am second line of top level comment in this file.
+// @ts-nocheck
+import React, { FC } from 'react';
+import { BrowserRoute } from 'react-router-dom';
+
+import App from 'antd';
 import thirdParty from 'third-party';
-
-import React from 'react';
-
-import something from '@server/something';
 
 import otherthing from '@core/otherthing';
 
 import component from '@ui/hello';
 
-import fourLevelRelativePath from '../../../../fourLevelRelativePath';
 import threeLevelRelativePath from '../../../threeLevelRelativePath';
 import twoLevelRelativePath from '../../twoLevelRelativePath';
 import oneLevelRelativePath from '../oneLevelRelativePath';
@@ -18,10 +16,12 @@ import sameLevelRelativePath from './sameLevelRelativePath';
 
 export { random } from './random';
 
-export default {
-    title: 'hello',
+interface HelloWorldProps {
+    name: string;
+}
+
+const HelloWorld: FC<HelloWorldProps> = ({ name }) => {
+    return <div>Hello, {name}</div>;
 };
 
-function add(a, b) {
-    return a + b;
-}
+export default HelloWorld;

@@ -1,5 +1,5 @@
 import { addComments, removeComments } from '@babel/types';
-import { clone, isEqual } from 'lodash';
+import { clone, isEqual, isUndefined } from 'lodash';
 
 import { THIRD_PARTY_MODULES_SPECIAL_WORD, newLineNode } from '../constants';
 import { naturalSort } from '../natural-sort';

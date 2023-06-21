@@ -1,6 +1,6 @@
 {
     "name": "prettier-plugin-better-sort-imports",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "A better prettier plugins to sort imports in provided RegEx order",
     "main": "lib/src/index.js",
     "repository": {
@@ -12,10 +12,10 @@
         "prepare": "yarn run compile",
         "compile": "tsc",
         "preexample": "yarn run compile",
-        "example": "prettier --config ./examples/.prettierrc --plugin lib/src/index.js --write './examples/**/*.{js,jsx,ts,tsx}'",
+        "example:react": "yarn preexample && prettier --config ./examples/react/prettier.config.js --plugin lib/src/index.js --write './examples/react/**/*.{js,jsx,ts,tsx}'",
+        "example:vue": "yarn preexample && prettier --config ./examples/vue/prettier.config.js --plugin lib/src/index.js --write ''./examples/react/**/*.{vue}''",
         "type-check": "tsc --noEmit",
-        "prepublishOnly": "npm run compile",
-        "linkLocal": "npm run compile && npm link"
+        "prepublishOnly": "npm run compile"
     },
     "keywords": [
         "prettier",
@@ -37,6 +37,7 @@
         "@babel/parser": "7.14.6",
         "@babel/traverse": "7.13.0",
         "@babel/types": "7.13.0",
+        "@vue/compiler-sfc": "^3.3.4",
         "javascript-natural-sort": "0.7.1",
         "lodash": "4.17.21"
     },

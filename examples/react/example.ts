@@ -1,5 +1,3 @@
-import { debounce, reduce } from 'lodash';
-
 import React, {
     ChangeEvent,
     FC,
@@ -7,6 +5,8 @@ import React, {
     useEffect,
     useRef,
 } from 'react';
+
+import { debounce, reduce } from 'lodash';
 
 import { createConnection } from '@server/database';
 import { createServer } from '@server/node';

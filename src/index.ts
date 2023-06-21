@@ -1,8 +1,10 @@
 import { parsers as babelParsers } from 'prettier/parser-babel';
 import { parsers as flowParsers } from 'prettier/parser-flow';
 import { parsers as typescriptParsers } from 'prettier/parser-typescript';
+import { parsers as htmlParsers } from 'prettier/parser-html';
 
-import { preprocessor } from './preprocessor';
+import { defaultPreprocessor } from './preprocessors/default-processor';
+import { vuePreprocessor } from './preprocessors/vue-preprocessor';
 
 const options = {
     importOrder: {
@@ -52,21 +54,31 @@ const options = {
         default: '',
         description: 'Your Project Base',
     },
+    shouldSort: {
+        type: 'string',
+        category: 'Global',
+        default: '',
+        description: 'Returns a Boolean value determining whether this plugin needs to be executed',
+    },
 };
 
 module.exports = {
     parsers: {
         babel: {
             ...babelParsers.babel,
-            preprocess: preprocessor,
+            preprocess: defaultPreprocessor,
         },
         flow: {
             ...flowParsers.flow,
-            preprocess: preprocessor,
+            preprocess: defaultPreprocessor,
         },
         typescript: {
             ...typescriptParsers.typescript,
-            preprocess: preprocessor,
+            preprocess: defaultPreprocessor,
+        },
+        vue: {
+            ...htmlParsers.vue,
+            preprocess: vuePreprocessor,
         },
     },
     options,

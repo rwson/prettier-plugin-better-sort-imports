@@ -102,7 +102,7 @@ To move the third party imports at desired place, you can use `<THIRD_PARTY_MODU
 
 ## Notice
 
-`<THIRD_PARTY_MODULES>` in `@trivago/prettier-plugin-sort-imports` are all third-party modules. When sorting, the dependencies will be sorted in alphabetical order, users can't specific sort orders for third packages, just like below:
+`<THIRD_PARTY_MODULES>` in `@trivago/prettier-plugin-sort-imports` are third-party modules. When sorting, the dependencies will be sorted alphabetically, and it is impossible to distinguish whether the import source is a third-party module (existing in package.json), and the user cannot specify a specific sort order for the third package, as shown below:
 
 ```javascript
 //	before sort
@@ -251,8 +251,7 @@ importOrderParserPlugins: []
 | NodeJS with ES Modules | ✅ Everything            | -                                                |
 | React                  | ✅ Everything            | -                                                |
 | Angular                | ✅ Everything            | Supported through `importOrderParserPlugins` API |
-| Vue                    | Coming soon | Any contribution is welcome.                     |
-| Svelte                 | Coming soon | Any contribution is welcome.                     |
+| Vue                    | ✅ Everything            | @vue/compiler-sfc is required                    |
 
 ### Disclaimer
 

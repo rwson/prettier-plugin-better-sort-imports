@@ -1,7 +1,7 @@
+import React, { FC } from 'react';
+
 import App from 'antd';
 import thirdParty from 'third-party';
-
-import React, { FC } from 'react';
 
 import otherthing from '@core/otherthing';
 
